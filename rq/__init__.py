@@ -1,6 +1,5 @@
 import requests
 
-
 def get_token():
     with open('../secrets.txt', 'r') as f:
         t = f.read()
@@ -14,10 +13,10 @@ def check_addr(address):
     response_json = requests.api.get(call).json()
     count = response_json["count"]
     if count:
-        return int(count)
-
-    #for element in response.json():
-     #   print(element)
-
-
-check_addr("1BvBMSEYstWetqTFn5Au4m4GFg7xJaNVN2")
+        count = int(count)
+        if count > 0:
+            return 1  # 1 or more fraud reports on this address
+        else:
+            return 3  # no fraud reports for this address
+    else:
+        return -1  # count is missing
