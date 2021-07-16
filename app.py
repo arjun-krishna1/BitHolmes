@@ -12,10 +12,11 @@ def index():
     fraud_level = 0
     if pressed('public-key-submit'): #if submit button is pressed
         public_key = request.form['public-key-input']
-
-    #function that outputs -1 0 1 2 or 3
+        fraud_level = check_addr(public_key)
 
     fraud_value = data.fraud_level_to_value.get(fraud_level, -1)
+
+
 
     return render_template("base.html", output_value = fraud_value)
 
