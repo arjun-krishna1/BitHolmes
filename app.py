@@ -35,6 +35,13 @@ def qr(address = None):
     return render_template("qr.html", location = location)
 
 
+@app.route('/results', methods = ["POST"])
+def results():
+    return render_template("results.html")
+
+
+
+
 @app.context_processor
 def override_url_for():
     return dict(url_for=dated_url_for)

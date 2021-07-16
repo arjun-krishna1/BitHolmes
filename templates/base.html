@@ -23,32 +23,21 @@
             <img src="{{url_for('static', filename='images/bitlocker_just_holmes.png')}}" style="padding-right: 3%;" class="bendict-boi shake" height=100 alt="bitlocker_just_holmes.png"/>
           </div>          
           <span class="navbar-brand mb-0 h1 shake" style="font-size: 3em;font-family: 'ShareTech';">BitHolmes</span>
+          <br><br><p class = "shake">The Game is afoot!</p>
         </div>
       </nav>	
 
       <div class="container">
-        <div id="subtitle-box">
+        <div id="subtitle-box" style = "text-align: center;">
           <h1 class="subtitle">Check if this BitCoin public key is a fraud.</h1>
-          <h1 class="subtitle">The game is afoot!</h1>
         </div>
-        <form action="/" method="POST">
+        <form action="/results" method="POST">
           <div>
-            <label for="publick-key-input">BitCoin Public Key</label>
-            <input type="text" id="public-key-input" name="public-key-input">
+            <input autocomplete="off" style = "width: 45em" placeholder="BitCoin Public Key" class = "text-input center" id="public-key-input" name="public-key-input" >
           </div>
-          <input type="submit" class="submit-btn" id="public-key-submit" name="public-key-submit" value="Is it a scam?"/>
+            <br>
+          <input type="submit" class = "submit-btn center" id="public-key-submit" name="public-key-submit" value="Is it a scam?"/>
         </form>
-          <div id="result">
-		{% if output_value == 0 %}
-			<p>unknown</p>
-		{% elif output_value == 1 %}
-			<p>fraud</p>
-		{% elif output_value == 2 %}
-			<p>suspected fraud</p>
-		{% elif output_value == 3 %}
-			<p>not fraud</p>
-		{% endif %}
-          </div>
       </div>
       
   	  
