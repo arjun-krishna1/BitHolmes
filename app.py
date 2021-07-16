@@ -2,10 +2,13 @@ from flask import *
 import data, os
 import qrcodefunctions as qrfunc
 from rq import check_addr
+from datetime import timedelta
+from flask_sqlalchemy import SQLAlchemy
+from flask_marshmallow import Marshmallow
 
 app = Flask(__name__)
-
-
+app.secret_key = "7291"
+app.permanent_session_lifetime = timedelta(minutes=10)
 
 
 @app.route("/<address>", methods = ["GET"])
