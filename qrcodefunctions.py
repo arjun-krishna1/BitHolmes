@@ -11,7 +11,8 @@ def make_qr(data):
     return name
 
 def make_website_link_qr(public_key):
-    return make_qr(public_key)
+    website_url = "http://127.0.0.1:5000/"
+    return make_qr(website_url + public_key)
 
 def delete_old_files():
     print("checking deletions")
