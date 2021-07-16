@@ -4,6 +4,14 @@ import os
 app = Flask(__name__)
 
 
+@app.route('/', methods = ["GET", "POST"])
+def index():
+    return render_template("base.html")
+
+
+
+
+
 @app.context_processor
 def override_url_for():
     return dict(url_for=dated_url_for)
