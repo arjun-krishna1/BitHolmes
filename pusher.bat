@@ -1,5 +1,6 @@
 @echo off
 
+git branch
 set /P commitName="What is the name of the commit? "
 git add .
 git commit -m "%commitName%"
