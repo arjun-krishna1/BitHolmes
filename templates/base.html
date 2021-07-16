@@ -38,7 +38,17 @@
           </div>
           <input type="submit" class="submit-btn" id="public-key-submit" name="public-key-submit" value="Is it a scam?"/>
         </form>
-        <p>output: {{ output_value }}</p>
+          <div id="result">
+		{% if output_value == 0 %}
+			<p>unknown</p>
+		{% elif output_value == 1 %}
+			<p>fraud</p>
+		{% elif output_value == 2 %}
+			<p>suspected fraud</p>
+		{% elif output_value == 3 %}
+			<p>not fraud</p>
+		{% endif %}
+          </div>
       </div>
       
   	  

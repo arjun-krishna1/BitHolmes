@@ -21,7 +21,7 @@ def index(address = None):
 
     fraud_value = data.fraud_level_to_value.get(fraud_level, 0)
 
-    return render_template("base.html", output_value = fraud_value)
+    return render_template("base.html", output_value = fraud_level)
 
 
 @app.route("/qr/<address>", methods = ["GET"])
