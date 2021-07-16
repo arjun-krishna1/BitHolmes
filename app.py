@@ -1,4 +1,5 @@
 from flask import *
+import data
 import os
 from rq import check_addr
 
@@ -8,10 +9,15 @@ app = Flask(__name__)
 @app.route('/', methods = ["GET", "POST"])
 def index():
     pressed = lambda x : x in request.form
+    fraud_level = 0
     if pressed('public-key-submit'): #if submit button is pressed
-        print(request.form['public-key-input'])
+        public_key = request.form['public-key-input']
 
-    return render_template("base.html")
+    #function that outputs -1 0 1 2 or 3
+
+    fraud_value = data.fraud_level_to_value.get(fraud_level, -1)
+
+    return render_template("base.html", output_value = fraud_value)
 
 
 

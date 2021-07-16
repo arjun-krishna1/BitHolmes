@@ -9,16 +9,7 @@
 		<input type="text" id="public-key-input" name="public-key-input">
 		<input type="submit" id="public-key-submit" name="public-key-submit">
 	</form>
-	<div id="result">
-		{% if state == 0 %}
-			<p>unknown</p>
-		{% elif state == 1 %}
-			<p>fraud</p>
-		{% elif state == 2 %}
-			<p>suspected fraud</p>
-		{% elif state == 3 %}
-			<p>not fraud</p>
-		{% endif %}
-	</div>
+	<p>output: {{ output_value }}</p>
+
 </body>
 </html>
