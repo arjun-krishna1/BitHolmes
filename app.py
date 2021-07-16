@@ -27,6 +27,8 @@ def index(address = None):
 @app.route("/qr/<address>", methods = ["GET"])
 @app.route('/qr/', methods = ["GET"])
 def qr(address = None):
+    if address is None:
+        return redirect("/")
     qrfunc.delete_old_files()
     qr_hash = qrfunc.make_website_link_qr(address)
     location = url_for('static', filename = qr_hash)
