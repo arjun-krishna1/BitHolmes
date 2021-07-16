@@ -6,6 +6,10 @@ app = Flask(__name__)
 
 @app.route('/', methods = ["GET", "POST"])
 def index():
+    pressed = lambda x : x in request.form
+    if pressed('public-key-submit'): #if submit button is pressed
+        print(request.form['public-key-input'])
+
     return render_template("base.html")
 
 
