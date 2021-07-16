@@ -2,3 +2,4 @@
 new_secrets.txt
 __pycache__/
 .rm/
+venv/
