@@ -1,22 +1,24 @@
 from flask import *
 import data
 import os
+
 from rq import check_addr
 
 app = Flask(__name__)
 
 
+@app.route("/<address>", methods = ["GET"])
 @app.route('/', methods = ["GET", "POST"])
-def index():
+def index(address = None):
     pressed = lambda x : x in request.form
     fraud_level = 0
-    if pressed('public-key-submit'): #if submit button is pressed
+    if address: #if address passed into the url
+        fraud_level = check_addr(address)
+    elif pressed('public-key-submit'): #if submit button is pressed
         public_key = request.form['public-key-input']
         fraud_level = check_addr(public_key)
 
     fraud_value = data.fraud_level_to_value.get(fraud_level, 0)
-
-
 
     return render_template("base.html", output_value = fraud_value)
 
