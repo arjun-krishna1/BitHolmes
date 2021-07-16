@@ -2,14 +2,52 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-	<form action="/" method="POST">
-		<input type="text" id="public-key-input" name="public-key-input">
-		<input type="submit" id="public-key-submit" name="public-key-submit">
-	</form>
-	<p>output: {{ output_value }}</p>
+    <title>BitHolmes</title>
 
-</body>
+    <!-- Bootstrap -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Cedarville+Cursive&family=Share+Tech&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="{{url_for('static', filename='styles/index.css')}}">
+  </head>
+  <body>
+      <!-- As a heading -->
+      <nav class="navbar navbar-light bg-light">
+        <div class="container-fluid">
+          <div style="float: left;">
+            <img src="{{url_for('static', filename='images/bitlocker_just_holmes.png')}}" style="padding-right: 3%;" class="bendict-boi shake" height=100 alt="bitlocker_just_holmes.png"/>
+          </div>          
+          <span class="navbar-brand mb-0 h1 shake" style="font-size: 3em;font-family: 'ShareTech';">BitHolmes</span>
+        </div>
+      </nav>	
+
+      <div class="container">
+        <div id="subtitle-box">
+          <h1 class="subtitle">Check if this BitCoin public key is a fraud.</h1>
+          <h1 class="subtitle">The game is afoot!</h1>
+        </div>
+        <form action="/" method="POST">
+          <div>
+            <label for="publick-key-input">BitCoin Public Key</label>
+            <input type="text" id="public-key-input" name="public-key-input">
+          </div>
+          <input type="submit" class="submit-btn" id="public-key-submit" name="public-key-submit" value="Is it a scam?"/>
+        </form>
+        <p>output: {{ output_value }}</p>
+      </div>
+      
+  	  
+
+      <!-- Latest compiled and minified JavaScript -->
+      <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+      <!-- Include all compiled plugins (below), or include individual files as needed -->
+      <!-- Latest compiled and minified JavaScript -->
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    </body>
 </html>

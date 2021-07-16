@@ -1,3 +1,4 @@
 .idea
 new_secrets.txt
-.__pycache__
+__pycache__/
+.rm/
