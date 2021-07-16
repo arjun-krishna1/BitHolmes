@@ -1,6 +1,7 @@
 from flask import *
 import data
 import os
+from rq import check_addr
 
 app = Flask(__name__)
 

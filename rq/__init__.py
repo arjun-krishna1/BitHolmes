@@ -1,6 +1,5 @@
 import requests
 
-
 def get_token():
     with open('../secrets.txt', 'r') as f:
         t = f.read()
@@ -21,6 +20,3 @@ def check_addr(address):
             return 3  # no fraud reports for this address
     else:
         return -1  # count is missing
-
-
-print(check_addr("1BvBMSEYstWetqTFn5Au4m4GFg7xJaNVN2"))
