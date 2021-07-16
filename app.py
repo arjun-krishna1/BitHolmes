@@ -14,7 +14,7 @@ def index():
         public_key = request.form['public-key-input']
         fraud_level = check_addr(public_key)
 
-    fraud_value = data.fraud_level_to_value.get(fraud_level, -1)
+    fraud_value = data.fraud_level_to_value.get(fraud_level, 0)
 
 
 
