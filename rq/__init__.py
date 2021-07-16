@@ -1,7 +1,7 @@
 import requests
 
 def get_token():
-    with open('../secrets.txt', 'r') as f:
+    with open('new_secrets.txt', 'r') as f:
         t = f.read()
         f.close()
         return t
