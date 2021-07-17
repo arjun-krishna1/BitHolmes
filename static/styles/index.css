@@ -81,6 +81,7 @@ span {
 }
 
 .report-link {
+    color: crimson;
     border: 2px solid;
     padding: 0.6em;
     transition: 0.7s;
@@ -88,6 +89,7 @@ span {
 
 .report-link:hover {
     color: red;
+    padding: 0.7em;
     transition: 0.7s;
 }
 
