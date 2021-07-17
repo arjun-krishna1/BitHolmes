@@ -3,9 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <title>Results</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='styles/index.css')}}">
 </head>
 <body>
-{{ fraud_level }}
+{% if fraud_level == 1 %}
+<style>
+    body {
+        background-color: red;
+    }
+    .container {
+        color: black;
+        border-color: black;
+    }
+</style>
+<div class="container">
+    <h4 style = "text-align: center;">This public key is known to be a scam<h4/>
+</div>
+{% elif fraud_level == 3 %}
+<style>
+    body {
+        background-color: green;
+    }
+    .container {
+        color: black;
+        border-color: white;
+    }
+</style>
+<div class="container">
+    <h4 style = "text-align: center;">This public key is not known to be a scam<h4/>
+</div>
+{% endif %}
 
 </body>
 </html>
