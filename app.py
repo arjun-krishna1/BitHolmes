@@ -3,9 +3,10 @@ import data, os
 import qrcodefunctions as qrfunc
 from rq import check_addr
 from datetime import timedelta
-
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
+# import that btc address validator package
+
 
 app = Flask(__name__)
 
@@ -14,36 +15,32 @@ app.secret_key = "7291"
 app.permanent_session_lifetime = timedelta(minutes=10)
 
 
-@app.route("/<address>", methods = ["GET"])
-@app.route('/', methods = ["GET", "POST"])
-def index(address = None):
+@app.route("/<address>", methods=["GET"])
+@app.route('/', methods=["GET", "POST"])
+def index(address=None):
     global fraud_level
-    pressed = lambda x : x in request.form
-    if address: #if address passed into the url
+    pressed = lambda x: x in request.form
+    if address:  # if address passed into the url
         fraud_level = check_addr(address)
-    elif pressed('public-key-submit') and request.form['public-key-input']: #if submit button is pressed
+    elif pressed('public-key-submit') and request.form['public-key-input']:  # if submit button is pressed
         public_key = request.form['public-key-input']
 
         fraud_level = check_addr(public_key)
-        return render_template("results.html", fraud_level = fraud_level)
+        return render_template("results.html", fraud_level=fraud_level)
 
     fraud_value = data.fraud_level_to_value.get(fraud_level, 0)
 
     return render_template("base.html")
 
 
-@app.route("/qr/<address>", methods = ["GET"])
-@app.route('/qr/', methods = ["GET"])
-def qr(address = None):
-    if address is None:
-        return redirect("/")
+#@app.route("/qr/<address>", methods=["GET"])
+@app.route('/qr', methods=["POST"])
+def qr():
+    address = request.form["qr-public-key-input"]
     qrfunc.delete_old_files()
     qr_hash = qrfunc.make_website_link_qr(address)
-    location = url_for('static', filename = qr_hash)
-    return render_template("qr.html", location = location)
-
-
-
+    location = url_for('static', filename=qr_hash)
+    return render_template("qr.html", location=location)
 
 
 @app.context_processor

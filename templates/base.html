@@ -15,7 +15,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Cedarville+Cursive&family=Share+Tech&display=swap" rel="stylesheet"> 
     <link rel="stylesheet" href="{{url_for('static', filename='styles/index.css')}}">
     <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.png') }}">
-    <div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
   </head>
   <body>
       <!-- As a heading -->
@@ -41,6 +40,19 @@
           <input type="submit" class = "submit-btn center" id="public-key-submit" name="public-key-submit" value="Is it a scam?"/>
         </form>
       </div>
+
+      <div class="container">
+        <div id="qr-subtitle-box" style = "text-align: center;">
+          <h1 class="subtitle">Generate a QR code for this address on BitHolmes</h1>
+        </div>
+        <form action="/qr" method="POST">
+          <div>
+            <input autocomplete="off" style = "width: 45em" placeholder="BitCoin Public Key" class = "text-input center" id="qr-public-key-input" name="qr-public-key-input" >
+          </div>
+            <br>
+          <input type="submit" class = "submit-btn center" id="qr-public-key-submit" name="qr-public-key-submit" value="Is it a scam?"/>
+        </form>
+      </div>
       
   	  
 
@@ -51,4 +63,5 @@
       <!-- Latest compiled and minified JavaScript -->
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     </body>
+            <div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
 </html>

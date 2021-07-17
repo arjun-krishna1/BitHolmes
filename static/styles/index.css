@@ -83,8 +83,12 @@ span {
 
 #subtitle-box {
     padding-bottom: 2em;
+    padding-top: 2em;
 }
 
 #public-key-input {
+    color: black;
+}
+#qr-public-key-input {
     color: black;
 }
