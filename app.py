@@ -7,6 +7,8 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
 
 app = Flask(__name__)
+
+fraud_level = 0
 app.secret_key = "7291"
 app.permanent_session_lifetime = timedelta(minutes=10)
 
@@ -14,17 +16,19 @@ app.permanent_session_lifetime = timedelta(minutes=10)
 @app.route("/<address>", methods = ["GET"])
 @app.route('/', methods = ["GET", "POST"])
 def index(address = None):
+    global fraud_level
     pressed = lambda x : x in request.form
-    fraud_level = 0
     if address: #if address passed into the url
         fraud_level = check_addr(address)
-    elif pressed('public-key-submit'): #if submit button is pressed
+    elif pressed('public-key-submit') and request.form['public-key-input']: #if submit button is pressed
         public_key = request.form['public-key-input']
+
         fraud_level = check_addr(public_key)
+        return render_template("results.html", fraud_level = fraud_level)
 
     fraud_value = data.fraud_level_to_value.get(fraud_level, 0)
 
-    return render_template("base.html", output_value = fraud_level)
+    return render_template("base.html")
 
 
 @app.route("/qr/<address>", methods = ["GET"])
@@ -37,10 +41,6 @@ def qr(address = None):
     location = url_for('static', filename = qr_hash)
     return render_template("qr.html", location = location)
 
-
-@app.route('/results', methods = ["POST"])
-def results():
-    return render_template("results.html")
 
 
 
