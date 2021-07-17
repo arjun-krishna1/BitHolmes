@@ -27,35 +27,25 @@
           </div>
       </nav>
 
-      <form onkeydown="return event.key != 'Enter';" action="/" method="POST">
+      <form onkeydown="return event.key != 'Enter';" action="/reports/" method="POST">
           <div class="container">
               <div id="subtitle-box" style="text-align: center;">
-              <h1 class="subtitle">Check if this BitCoin public key is a fraud.</h1>
+              <h1 class="subtitle">Report a BitCoin public key</h1>
             </div>
               <div>
-                  <input autocomplete="off" class="text-input center" placeholder="BitCoin Public Key for analysis" id="public-key-input" name="public-key-input">
+                  <input autocomplete="off" class="text-input center" placeholder="BitCoin Public Key" id="report-key-input" name="report-key-input">
               </div>
                 <br>
-              <input type="submit" class="submit-btn btn center" id="public-key-submit" name="public-key-submit" value="Is it a scam?">
+              <input type="submit" class="report-btn btn center" id="report-btn-submit" name="report-btn-submit" value="Report">
               {% if errors[0] %}
               <br><p class = "error centert">{{ errors[0] }}</p>
               {% endif %}
               <br><br>
               <div style = "text-align: center;">
-                  <a class = "report-link" href = "/reports">Report a public key</a>
+                  <a class = "back-link" href = "/">Go back</a>
               </div>
           </div>
-          <br><br><br>
-          <div class="container">
-              <div id="subtitle-box" style="text-align: center;">
-              <h1 class="subtitle">Enter a public key to generate a QRCode</h1>
-            </div>
-                <input autocomplete="off" style="color: black;" class="text-input center" placeholder="BitCoin Public Key for QRCode" id="public-key-input-qr" name="public-key-input-qr">
-                <br><input type="submit" class="submit-btn-qr btn center" id="public-key-submit-qr" name="public-key-submit-qr" value="Create my QRCode">
-                {% if errors[1] %}
-                <br><p class = "error centert">{{ errors[1] }}</p>
-                {% endif %}
-          </div>
+
       </form>
 
 
@@ -70,3 +60,5 @@
     <div hidden="">
         <div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
     </div>
+
+
