@@ -18,9 +18,14 @@ app.permanent_session_lifetime = timedelta(minutes=10)
 @app.route('/', methods = ["GET", "POST"])
 def index(address = None):
     global fraud_level
+    print('starting')
+    print(request.form)
     pressed = lambda x : x in request.form
     if address: #if address passed into the url
         fraud_level = check_addr(address)
+    elif pressed('public-key-submit-qr') and request.form['public-key-input-qr']:
+        public_key_qr = request.form['public-key-input-qr']
+        return redirect("/qr/" + public_key_qr)
     elif pressed('public-key-submit') and request.form['public-key-input']: #if submit button is pressed
         public_key = request.form['public-key-input']
 

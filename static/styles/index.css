@@ -60,13 +60,15 @@ span {
 .submit-btn {
     padding: 1em;
     background-color: gray;
+    width: 10em;
+    border-radius: 20px;
     transition: .7s;
 }
 
 .submit-btn:hover {
     color: black;
     background-color: red;
-    border-radius: 30px;
+    width: 11em;
     transition: .7s;
     animation: color-swapping 1s infinite alternate both ease-in-out;
 }
@@ -75,6 +77,34 @@ span {
     from {background-color: #00FF00;}
     to {background-color: red;}
 }
+
+.submit-btn-qr {
+    background: gray;
+    color: white;
+    background-size: cover;
+    white-space: normal;
+    border-radius: 20px;
+    width: 20em;
+    padding: 1em;
+    transition: .7s;
+}
+
+.submit-btn-qr:hover {
+    color: white;
+    background-size: cover;
+    background:	#787878;
+    width: 21em;
+    padding: 1em;
+    transition: .7s;
+}
+
+
+
+
+
+
+
+
 
 .subtitle {
     font-size: 2em;

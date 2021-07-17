@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en"><head>
     <meta charset="UTF-8">
     <title>BitHolmes</title>
 
@@ -10,39 +8,48 @@
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap" rel="stylesheet"> 
-    <link href="https://fonts.googleapis.com/css2?family=Cedarville+Cursive&family=Share+Tech&display=swap" rel="stylesheet"> 
-    <link rel="stylesheet" href="{{url_for('static', filename='styles/index.css')}}">
-    <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.png') }}">
-    <div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cedarville+Cursive&amp;family=Share+Tech&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/styles/index.css?q=1626533471">
+    <link rel="shortcut icon" href="/static/images/favicon.png?q=1626529572">
+
   </head>
-  <body>
+  <body data-new-gr-c-s-check-loaded="14.1022.0" data-gr-ext-installed="" class="vsc-initialized">
       <!-- As a heading -->
       <nav class="navbar navbar-light bg-light">
-        <div class="container-fluid">
-          <div style="float: left;">
-            <img src="{{url_for('static', filename='images/bitlocker_just_holmes.png')}}" style="padding-right: 3%;" class="bendict-boi shake" height=100 alt="bitlocker_just_holmes.png"/>
-          </div>          
-          <span class="navbar-brand mb-0 h1 shake" style="font-size: 3em;font-family: 'ShareTech';">BitHolmes</span>
-          <br><br><p class = "shake">The Game is afoot!</p>
-        </div>
-      </nav>	
-
-      <div class="container">
-        <div id="subtitle-box" style = "text-align: center;">
-          <h1 class="subtitle">Check if this BitCoin public key is a fraud.</h1>
-        </div>
-        <form action="/" method="POST">
-          <div>
-            <input autocomplete="off" style = "width: 45em" placeholder="BitCoin Public Key" class = "text-input center" id="public-key-input" name="public-key-input" >
+          <div class="container-fluid">
+              <div style="float: left;">
+                  <img src="/static/images/bitlocker_just_holmes.png?q=1626471800" style="padding-right: 3%;" class="bendict-boi shake" height="100" alt="bitlocker_just_holmes.png">
+              </div>
+              <span class="navbar-brand mb-0 h1 shake" style="font-size: 3em;font-family: 'ShareTech';">BitHolmes</span>
+              <br><br><p class="shake">The Game is afoot!</p>
           </div>
-            <br>
-          <input type="submit" class = "submit-btn center" id="public-key-submit" name="public-key-submit" value="Is it a scam?"/>
-        </form>
-      </div>
-      
-  	  
+      </nav>
+
+      <form onkeydown="return event.key != 'Enter';" action="/" method="POST">
+          <div class="container">
+              <div id="subtitle-box" style="text-align: center;">
+              <h1 class="subtitle">Check if this BitCoin public key is a fraud.</h1>
+            </div>
+              <div>
+                  <input autocomplete="off" style="width: 45em" class="text-input center" placeholder="BitCoin Public Key for analysis" id="public-key-input" name="public-key-input">
+              </div>
+                <br>
+              <input type="submit" class="submit-btn center" id="public-key-submit" name="public-key-submit" value="Is it a scam?">
+
+          </div>
+          <br><br><br>
+          <div class="container">
+              <div id="subtitle-box" style="text-align: center;">
+              <h1 class="subtitle">Enter a public key to generate a QRCode</h1>
+            </div>
+                <input autocomplete="off" style="width: 45em; color: black;" class="text-input center" placeholder="BitCoin Public Key for QRCode conversion" id="public-key-input-qr" name="public-key-input-qr">
+                <br><input type="submit" class="submit-btn-qr center" id="public-key-submit-qr" name="public-key-submit-qr" value="Create my QRCode?">
+          </div>
+      </form>
+
+
 
       <!-- Latest compiled and minified JavaScript -->
       <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -50,5 +57,19 @@
       <!-- Include all compiled plugins (below), or include individual files as needed -->
       <!-- Latest compiled and minified JavaScript -->
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    </body>
-</html>
+
+    <div hidden="">
+        <div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+    </div>
+
+
+
+<script>
+    document.addEventListener("keydown", (event) => {
+    console.log(event.key, event.code);
+        if (event.code == "13")
+        {
+           event.preventDefault();
+        }
+    });
+</script></body><grammarly-desktop-integration data-grammarly-shadow-root="true"></grammarly-desktop-integration></html>
