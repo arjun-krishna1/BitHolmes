@@ -59,6 +59,11 @@ def qr(address = None):
 
     return render_template("qr.html", location = location)
 
+@app.route('/result/', methods = ["GET"])
+def result():
+    return render_template("result.html")
+
+
 
 @app.route("/reports/<address>", methods = ["GET"])
 @app.route('/reports/', methods = ["GET", "POST"])

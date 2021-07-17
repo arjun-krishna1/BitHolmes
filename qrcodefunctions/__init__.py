@@ -22,7 +22,7 @@ def delete_old_files():
         if ".png" in file:
             time_change = time() - png_to_float(file)
             if time_change > 86400: # a day
-                os.remove(static_path + '\\' + file)
+                os.remove(os.path.join(static_path, file))
 
 
 
