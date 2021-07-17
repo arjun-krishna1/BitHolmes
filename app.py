@@ -57,7 +57,7 @@ def qr(address = None):
         error_two = "That public key was not found"
         return render_template("base.html", errors=[0, error_two])
 
-    return render_template("qr.html", location = location, errors = [error_one])
+    return render_template("qr.html", location = location)
 
 
 @app.route("/reports/<address>", methods = ["GET"])

@@ -4,3 +4,4 @@ __pycache__/
 *.pyc
 .rm/
 venv/
+/static/*.png
