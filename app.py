@@ -46,12 +46,19 @@ def index(address = None):
 @app.route("/qr/<address>", methods = ["GET"])
 @app.route('/qr/', methods = ["GET"])
 def qr(address = None):
-    if address is None or not verify_bitcoin(address):
+    error_two = 0
+    if address is None:
         return redirect("/")
-    qrfunc.delete_old_files()
-    qr_hash = qrfunc.make_website_link_qr(address)
-    location = url_for('static', filename = qr_hash)
-    return render_template("qr.html", location = location)
+    if verify_bitcoin(address):
+        qrfunc.delete_old_files()
+        qr_hash = qrfunc.make_website_link_qr(address)
+        location = url_for('static', filename = qr_hash)
+    else:
+        error_two = "That public key was not found"
+        return render_template("base.html", errors=[0, error_two])
+
+    return render_template("qr.html", location = location, errors = [error_one])
+
 
 @app.route("/reports/<address>", methods = ["GET"])
 @app.route('/reports/', methods = ["GET", "POST"])
