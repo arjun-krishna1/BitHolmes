@@ -3,26 +3,35 @@ body {
     background-color: #34568B;
     color: white;
 }
-.container {
-  padding: 10%;
-}
 
 .container {
   border: 0.25em solid white;
+  padding: 10%;
   position: relative;
   border-color: white;
   border-radius: 1.5em;
   transition: .5s;
 }
 
-.text-input {
-    border-radius: 1.5em;
-    padding: .8em;
+.centert {
+    text-align: center;
+}
+
+.error {
+    color: red;
+    text-decoration: underline;
 }
 
 .container:hover {
   border-radius: 2.5em;
   transition: .5s;
+}
+
+.text-input {
+    color: black;
+    border-radius: 1.5em;
+    padding: .8em;
+    width: 45em;
 }
 
 span {
@@ -59,18 +68,51 @@ span {
 
 .submit-btn {
     padding: 1em;
-    background-color: gray;
-    width: 10em;
-    border-radius: 20px;
+    width: 12em;
     transition: .7s;
 }
 
 .submit-btn:hover {
     color: black;
     background-color: red;
-    width: 11em;
+    width: 13em;
     transition: .7s;
     animation: color-swapping 1s infinite alternate both ease-in-out;
+}
+
+.report-link {
+    border: 2px solid;
+    padding: 0.6em;
+    transition: 0.7s;
+}
+
+.report-link:hover {
+    color: red;
+    transition: 0.7s;
+}
+
+.back-link {
+    border: 2px solid;
+    padding: 0.6em;
+    transition: 0.7s;
+}
+
+.back-link:hover {
+    color: orange;
+    transition: 0.7s;
+}
+
+
+
+.report-btn {
+    width: 10em;
+    transition: 0.7s;
+}
+
+.report-btn:hover {
+    width: 11em;
+    background-color: red;
+    transition: 0.7s;
 }
 
 @keyframes color-swapping {
@@ -79,11 +121,6 @@ span {
 }
 
 .submit-btn-qr {
-    background: gray;
-    color: white;
-    background-size: cover;
-    white-space: normal;
-    border-radius: 20px;
     width: 20em;
     padding: 1em;
     transition: .7s;
@@ -98,12 +135,11 @@ span {
     transition: .7s;
 }
 
-
-
-
-
-
-
+.btn {
+    background: gray;
+    color: white;
+    border-radius: 20px;
+}
 
 
 .subtitle {
@@ -117,4 +153,39 @@ span {
 
 #public-key-input {
     color: black;
+}
+
+
+@media only screen and (max-device-width: 600px)
+{
+    #subtitle-box {
+        font-size: 2em;
+    }
+
+    .container {
+        position: relative;
+        border: 0.5em solid white;
+        border-color: white;
+        border-radius: 3em;
+        transition: .5s;
+    }
+    
+
+    .text-input {
+        width: 20em;
+        font-size: 2em;
+        position: relative;
+    }
+
+    .btn {
+        font-size: 2em;
+    }
+
+    .report-link {
+        font-size: 2em;
+    }
+
+    .back-link {
+        font-size: 2em;
+    }
 }

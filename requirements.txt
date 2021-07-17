@@ -4,3 +4,4 @@ pillow~=8.2.0
 qrcode
 flask_marshmallow
 flask_sqlalchemy
+bs4~=0.0.1

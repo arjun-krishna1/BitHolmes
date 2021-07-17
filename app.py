@@ -2,6 +2,7 @@ from flask import *
 import data, os
 import qrcodefunctions as qrfunc
 from rq import check_addr
+from crytpoaddrverification import verify_bitcoin
 from datetime import timedelta
 
 from flask_sqlalchemy import SQLAlchemy
@@ -18,34 +19,52 @@ app.permanent_session_lifetime = timedelta(minutes=10)
 @app.route('/', methods = ["GET", "POST"])
 def index(address = None):
     global fraud_level
-    print('starting')
-    print(request.form)
-    pressed = lambda x : x in request.form
+    error_one = error_two = 0
+    pressed = lambda x: x in request.form
     if address: #if address passed into the url
-        fraud_level = check_addr(address)
+        if verify_bitcoin(address):
+            fraud_level = check_addr(address)
+        else:
+            error_one = "That bitcoin public key was not found"
     elif pressed('public-key-submit-qr') and request.form['public-key-input-qr']:
         public_key_qr = request.form['public-key-input-qr']
-        return redirect("/qr/" + public_key_qr)
+        if verify_bitcoin(public_key_qr):
+            return redirect("/qr/" + public_key_qr)
+        else:
+            error_two = "That bitcoin public key was not found"
     elif pressed('public-key-submit') and request.form['public-key-input']: #if submit button is pressed
         public_key = request.form['public-key-input']
+        if verify_bitcoin(public_key):
+            fraud_level = check_addr(public_key)
+            return render_template("results.html", fraud_level = fraud_level)
+        else:
+            error_one = "That bitcoin public key was not found"
 
-        fraud_level = check_addr(public_key)
-        return render_template("results.html", fraud_level = fraud_level)
-
-    fraud_value = data.fraud_level_to_value.get(fraud_level, 0)
-
-    return render_template("base.html")
+    return render_template("base.html", errors = [error_one, error_two])
 
 
 @app.route("/qr/<address>", methods = ["GET"])
 @app.route('/qr/', methods = ["GET"])
 def qr(address = None):
-    if address is None:
+    if address is None or not verify_bitcoin(address):
         return redirect("/")
     qrfunc.delete_old_files()
     qr_hash = qrfunc.make_website_link_qr(address)
     location = url_for('static', filename = qr_hash)
     return render_template("qr.html", location = location)
+
+@app.route("/reports/<address>", methods = ["GET"])
+@app.route('/reports/', methods = ["GET", "POST"])
+def reports(address = None):
+    error_one = 0
+    if 'report-btn-submit' in request.form and request.form['report-key-input']:
+        reported_public_key = request.form['report-key-input']
+        if verify_bitcoin(reported_public_key):
+            #DATABASE ADDITION LOCATION
+            return redirect("/")
+        else:
+            error_one = "That public key was not found"
+    return render_template("reports.html", errors = [error_one])
 
 
 
