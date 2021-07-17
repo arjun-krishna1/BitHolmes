@@ -8,14 +8,14 @@
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&amp;display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Cedarville+Cursive&amp;family=Share+Tech&amp;display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/static/styles/index.css?q=1626533471">
-    <link rel="shortcut icon" href="/static/images/favicon.png?q=1626529572">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cedarville+Cursive&family=Share+Tech&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{url_for('static', filename='styles/index.css')}}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.png') }}">
 
   </head>
-  <body data-new-gr-c-s-check-loaded="14.1022.0" data-gr-ext-installed="" class="vsc-initialized">
+  <body>
       <!-- As a heading -->
       <nav class="navbar navbar-light bg-light">
           <div class="container-fluid">
