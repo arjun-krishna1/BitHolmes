@@ -1,8 +1,9 @@
 from qrcode import make
 from time import time
 import os, glob
+from pathlib import Path
 
-static_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "static")
+static_path = os.path.join(Path(__file__).parents[1], 'static')
 
 def make_qr(data):
     code = make(data)

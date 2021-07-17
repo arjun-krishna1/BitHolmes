@@ -3,6 +3,7 @@ import data, os
 import qrcodefunctions as qrfunc
 from rq import check_addr
 from datetime import timedelta
+
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
 
