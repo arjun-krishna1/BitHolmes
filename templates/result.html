@@ -7,20 +7,45 @@
     <link rel="stylesheet" href="{{url_for('static', filename='styles/results.css')}}">
 </head>
 <body>
-<style>
-    body {
-        background-color: green;
-    }
-
-    .container {
-        color: black;
-        border-color: white;
-    }
-</style>
-<div class="container">
-    
-    <h4 style = "text-align: center;">Our model predicted with a 98% certainty that this public key is trust worthy<h4/>
-</div>
+<canvas style = "border: 2px black solid;" id = "myCanvas" width = "250" height = "250"></canvas>
 
 </body>
 </html>
+
+
+<script>
+
+ var canvas = document.getElementById('myCanvas');
+ var context = canvas.getContext('2d');
+
+
+ context.lineWidth = 10;
+ context.strokeStyle = '#ad2323';
+ context.shadowOffsetX = 0;
+ context.shadowOffsetY = 0;
+ context.shadowBlur = 10;
+ context.shadowColor = '#656565';
+
+ let steps = 100;
+ let increment_value = (2 * Math.PI) / steps
+ let radius = 0;
+
+ function animate(i) {
+    if (i >= steps) return;
+    i++;
+    console.log(i)
+    context.beginPath()
+    context.arc(100, 100, 50, radius, radius + increment_value, false);
+    radius += increment_value;
+    context.stroke();
+    setTimeout(() => {
+        animate(i)
+    }, 10);
+
+
+ }
+
+
+
+ animate();
+</script>
