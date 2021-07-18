@@ -11,9 +11,8 @@ def make_qr(data):
     code.save("static/" + name)
     return name
 
-def make_website_link_qr(public_key):
-    website_url = "http://127.0.0.1:5000/"
-    return make_qr(website_url + public_key)
+def make_website_link_qr(public_key, host_url):
+    return make_qr(host_url + public_key)
 
 def delete_old_files():
     files = os.listdir(static_path)

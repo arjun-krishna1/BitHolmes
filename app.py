@@ -52,7 +52,7 @@ def qr(address = None):
         return redirect("/")
     if verify_bitcoin(address):
         qrfunc.delete_old_files()
-        qr_hash = qrfunc.make_website_link_qr(address)
+        qr_hash = qrfunc.make_website_link_qr(address, request.host_url)
         location = url_for('static', filename = qr_hash)
     else:
         error_two = "That public key was not found"
