@@ -1,8 +1,9 @@
-
-
 .animation-ctn{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     text-align:center;
-    margin-top:15em;
   }
   
       @-webkit-keyframes checkmark {
@@ -102,4 +103,5 @@
   .icon--order-success svg circle#colored {
       -webkit-animation: colored-circle 0.6s ease-in-out 0.7s backwards;
       animation: colored-circle 0.6s ease-in-out 0.7s backwards;
-  } 
+  }
+

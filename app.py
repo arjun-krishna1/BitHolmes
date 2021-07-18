@@ -29,8 +29,11 @@ def index(address = None):
     if address: #if address passed into the url
         if verify_bitcoin(address):
             fraud_level = check_addr(address)
-            return redirect("result");
-            #return render_template("results.html", fraud_level = fraud_level)
+            fraud_percentage = ""
+            if fraud_level == 3:
+                is_fraud, fraud_percentage = CL.predict(public_key)
+                if is_fraud == True: fraud_level = 1
+            return render_template("results.html", fraud_level = fraud_level, fraud_percentage = fraud_percentage )
         else:
             error_one = "That bitcoin public key was not found"
     elif pressed('public-key-submit-qr') and request.form['public-key-input-qr']:
@@ -43,14 +46,10 @@ def index(address = None):
         public_key = request.form['public-key-input']
         if verify_bitcoin(public_key):
             fraud_level = check_addr(public_key)
-            fraud_percentage = 0
+            fraud_percentage = ""
             if fraud_level == 3:
-                # 2
-                # DO DEEP LEARNING CHECK
                 is_fraud, fraud_percentage = CL.predict(public_key)
-                if is_fraud:
-                    fraud_level = 2
-                print(fraud_level, is_fraud, fraud_percentage)
+                if is_fraud == True: fraud_level = 1
             return render_template("results.html", fraud_level = fraud_level, fraud_percentage = fraud_percentage )
         else:
             error_one = "That bitcoin public key was not found"

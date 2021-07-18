@@ -3,36 +3,158 @@
 <head>
     <meta charset="UTF-8">
     <title>Results</title>
-    <link rel="stylesheet" href="{{url_for('static', filename='styles/index.css')}}">
+    <link rel="stylesheet" href="/static/styles/index.css?q=1626569352">
+
 </head>
 <body>
-{% if fraud_level == 1 %}
 <style>
-    body {
-        background-color: red;
-    }
-    .container {
-        color: black;
-        border-color: black;
-    }
-</style>
-<div class="container">
-    <h4 style = "text-align: center;">This public key is known to be a scam<h4/>
-</div>
-{% elif fraud_level == 3 %}
-<style>
-    body {
-        background-color: green;
-    }
-    .container {
-        color: black;
-        border-color: white;
-    }
-</style>
-<div class="container">
-    <h4 style = "text-align: center;">This public key is not known to be a scam<h4/>
-</div>
-{% endif %}
+    .animation-ctn{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align:center;
+  }
 
+      @-webkit-keyframes checkmark {
+      0% {
+          stroke-dashoffset: 100px
+      }
+
+      100% {
+          stroke-dashoffset: 200px
+      }
+  }
+
+  @-ms-keyframes checkmark {
+      0% {
+          stroke-dashoffset: 100px
+      }
+
+      100% {
+          stroke-dashoffset: 200px
+      }
+  }
+
+  @keyframes checkmark {
+      0% {
+          stroke-dashoffset: 100px
+      }
+
+      100% {
+          stroke-dashoffset: 0px
+      }
+  }
+
+  @-webkit-keyframes checkmark-circle {
+      0% {
+          stroke-dashoffset: 480px
+
+      }
+
+      100% {
+          stroke-dashoffset: 960px;
+
+      }
+  }
+
+  @-ms-keyframes checkmark-circle {
+      0% {
+          stroke-dashoffset: 240px
+      }
+
+      100% {
+          stroke-dashoffset: 480px
+      }
+  }
+
+  @keyframes checkmark-circle {
+      0% {
+          stroke-dashoffset: 480px
+      }
+
+      100% {
+          stroke-dashoffset: 960px
+      }
+  }
+
+  @keyframes colored-circle {
+      0% {
+          opacity:0
+      }
+
+      100% {
+          opacity:100
+      }
+  }
+
+  /* other styles */
+  /* .svg svg {
+      display: none
+  }
+   */
+  .inlinesvg .svg svg {
+      display: inline
+  }
+
+  /* .svg img {
+      display: none
+  } */
+
+  .icon--order-success svg polyline {
+      -webkit-animation: checkmark 0.25s ease-in-out 0.7s backwards;
+      animation: checkmark 0.25s ease-in-out 0.7s backwards
+  }
+
+  .icon--order-success svg circle {
+      -webkit-animation: checkmark-circle 0.6s ease-in-out backwards;
+      animation: checkmark-circle 0.6s ease-in-out backwards;
+  }
+  .icon--order-success svg circle#colored {
+      -webkit-animation: colored-circle 0.6s ease-in-out 0.7s backwards;
+      animation: colored-circle 0.6s ease-in-out 0.7s backwards;
+  }
+
+
+
+</style>
+
+{% if fraud_level == 3 %}
+<div class="animation-ctn">
+  	<div class="icon icon--order-success svg">
+          <svg xmlns="http://www.w3.org/2000/svg" width="154px" height="154px">
+            <g fill="none" stroke="#22AE73" stroke-width="2">
+              <circle cx="77" cy="77" r="72" style="stroke-dasharray:480px, 480px; stroke-dashoffset: 960px;"></circle>
+              <circle id="colored" fill="#22AE73" cx="77" cy="77" r="72" style="stroke-dasharray:480px, 480px; stroke-dashoffset: 960px;"></circle>
+              <polyline class="st0" stroke="#fff" stroke-width="10" points="43.5,77.8 63.7,97.9 112.2,49.4 " style="stroke-dasharray:100px, 100px; stroke-dashoffset: 200px;"/>
+            </g>
+          </svg>
+        </div>
+</div>
+<h1 style = "color: lime; position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align:center;" class = "centert">AI prediction: {{ percentage }} safe<h1/>
+
+{% elif fraud_level == 1 %}
+
+<div class="animation-ctn">
+  	<div class="icon icon--order-success svg">
+          <svg xmlns="http://www.w3.org/2000/svg" width="154px" height="154px">
+            <g fill="none" stroke="#F44812" stroke-width="2">
+              <circle cx="77" cy="77" r="72" style="stroke-dasharray:480px, 480px; stroke-dashoffset: 960px;"></circle>
+              <circle id="colored" fill="#F44812" cx="77" cy="77" r="72" style="stroke-dasharray:480px, 480px; stroke-dashoffset: 960px;"></circle>
+              <polyline class="st0" stroke="#fff" stroke-width="10" points="43.5,77.8  112.2,77.8 " style="stroke-dasharray:100px, 100px; stroke-dashoffset: 200px;"/>
+            </g>
+          </svg>
+        </div>
+</div>
+    <h1 style = "color: red; position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align:center;" class = "centert">AI prediction: {{ percentage }} fraudulent<h1/>
+{% endif %}
 </body>
 </html>

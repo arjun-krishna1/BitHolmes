@@ -4,7 +4,6 @@ import requests
 import pandas as pd
 import json
 
-
 class AddressClassifier:
     # 1 is for sure fraud, 0 is for sure not fraud
     THRESHOLD = 0.3
@@ -28,6 +27,10 @@ class AddressClassifier:
         
     def predict(self, address):
         all_data = self.get_data_api(address)
+
+        if all_data == -1:
+            return -1, -1
+
         flat_dict = self.flatten_entire_dict(all_data)
         flat_arr = self.dict_to_array(flat_dict)
         process_arr = self.preprocess(flat_arr)
@@ -35,17 +38,18 @@ class AddressClassifier:
         # get the average prediction from all of this key's transaction
         avg_pred = self.model.predict(process_arr).mean()
 
-        return (avg_pred > self.THRESHOLD, avg_pred)
+        return (avg_pred > self.THRESHOLD, str(int(avg_pred * 100)))
                  
 
     def get_data_api(self, address):
         url = self.BASE_API + address
         resp = requests.get(url)
+
         try:
             entire_dict = resp.json()
             return entire_dict
-        except:
-            return {}
+        except Exception as e:
+            return -1
 
     def flatten_entire_dict(self, curr):
         id_dict_base = {feat: curr[feat] for feat in self.ID_FEATURES}
