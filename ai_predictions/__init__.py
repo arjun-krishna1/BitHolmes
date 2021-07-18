@@ -29,6 +29,7 @@ class AddressClassifier:
         all_data = self.get_data_api(address)
 
         if all_data == -1:
+            print("hit rate limit")
             return -1, -1
 
         flat_dict = self.flatten_entire_dict(all_data)
@@ -38,7 +39,11 @@ class AddressClassifier:
         # get the average prediction from all of this key's transaction
         avg_pred = self.model.predict(process_arr).mean()
 
-        return (avg_pred > self.THRESHOLD, str(int(avg_pred * 100)))
+        percent = int(avg_pred * 100)
+        if percent < self.THRESHOLD*100:
+            percent = 100 - percent
+
+        return (avg_pred > self.THRESHOLD, str(percent))
                  
 
     def get_data_api(self, address):

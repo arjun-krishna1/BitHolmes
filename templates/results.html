@@ -135,7 +135,7 @@
     top: 70%;
     left: 50%;
     transform: translate(-50%, -50%);
-    text-align:center;" class = "centert">AI prediction: {{ percentage }} safe<h1/>
+    text-align:center;" class = "centert">AI prediction: {{ fraud_percentage }}% safe<h1/>
 
 {% elif fraud_level == 1 %}
 
@@ -154,7 +154,7 @@
     top: 70%;
     left: 50%;
     transform: translate(-50%, -50%);
-    text-align:center;" class = "centert">AI prediction: {{ percentage }} fraudulent<h1/>
+    text-align:center;" class = "centert">AI prediction: {{ fraud_percentage }}% fraudulent<h1/>
 {% endif %}
 </body>
 </html>

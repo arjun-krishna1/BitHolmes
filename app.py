@@ -33,6 +33,8 @@ def index(address = None):
             if fraud_level == 3:
                 is_fraud, fraud_percentage = CL.predict(public_key)
                 if is_fraud == True: fraud_level = 1
+            else:
+                fraud_percentage = "100"
             return render_template("results.html", fraud_level = fraud_level, fraud_percentage = fraud_percentage )
         else:
             error_one = "That bitcoin public key was not found"
@@ -49,7 +51,11 @@ def index(address = None):
             fraud_percentage = ""
             if fraud_level == 3:
                 is_fraud, fraud_percentage = CL.predict(public_key)
-                if is_fraud == True: fraud_level = 1
+                if is_fraud == True:
+                    fraud_level = 1
+            else:
+                fraud_percentage = "100"
+
             return render_template("results.html", fraud_level = fraud_level, fraud_percentage = fraud_percentage )
         else:
             error_one = "That bitcoin public key was not found"
