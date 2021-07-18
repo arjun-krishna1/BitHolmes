@@ -1,2 +1,2 @@
-# BitSatan
-Hiya Bitcoin, Judgement Day is Here!
+# BitHolmes
+The game is afoot, BitCoin!
