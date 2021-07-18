@@ -29,6 +29,8 @@ def index(address = None):
     if address: #if address passed into the url
         if verify_bitcoin(address):
             fraud_level = check_addr(address)
+            return redirect("result");
+            #return render_template("results.html", fraud_level = fraud_level)
         else:
             error_one = "That bitcoin public key was not found"
     elif pressed('public-key-submit-qr') and request.form['public-key-input-qr']:
@@ -64,13 +66,18 @@ def qr(address = None):
         return redirect("/")
     if verify_bitcoin(address):
         qrfunc.delete_old_files()
-        qr_hash = qrfunc.make_website_link_qr(address)
+        qr_hash = qrfunc.make_website_link_qr(address, request.host_url)
         location = url_for('static', filename = qr_hash)
     else:
         error_two = "That public key was not found"
         return render_template("base.html", errors=[0, error_two])
 
     return render_template("qr.html", location = location)
+
+@app.route('/result/', methods = ["GET"])
+def result():
+    return render_template("result.html")
+
 
 
 @app.route("/reports/<address>", methods = ["GET"])

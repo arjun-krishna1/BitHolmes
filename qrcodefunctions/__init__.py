@@ -11,9 +11,8 @@ def make_qr(data):
     code.save("static/" + name)
     return name
 
-def make_website_link_qr(public_key):
-    website_url = "http://127.0.0.1:5000/"
-    return make_qr(website_url + public_key)
+def make_website_link_qr(public_key, host_url):
+    return make_qr(host_url + public_key)
 
 def delete_old_files():
     files = os.listdir(static_path)
@@ -22,7 +21,7 @@ def delete_old_files():
         if ".png" in file:
             time_change = time() - png_to_float(file)
             if time_change > 86400: # a day
-                os.remove(static_path + '\\' + file)
+                os.remove(os.path.join(static_path, file))
 
 
 
