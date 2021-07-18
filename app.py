@@ -1,5 +1,7 @@
 from flask import *
 import data, os
+
+from ai_predictions import AddressClassifier
 import qrcodefunctions as qrfunc
 from rq import check_addr
 from crytpoaddrverification import verify_bitcoin
@@ -8,11 +10,14 @@ from datetime import timedelta
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
 
+CL = AddressClassifier()
+
 app = Flask(__name__)
 
 fraud_level = 0
 app.secret_key = "7291"
 app.permanent_session_lifetime = timedelta(minutes=10)
+
 
 
 @app.route("/<address>", methods = ["GET"])
@@ -37,7 +42,15 @@ def index(address = None):
         public_key = request.form['public-key-input']
         if verify_bitcoin(public_key):
             fraud_level = check_addr(public_key)
-            return render_template("results.html", fraud_level = fraud_level)
+            fraud_percentage = 0
+            if fraud_level == 3:
+                # 2
+                # DO DEEP LEARNING CHECK
+                is_fraud, fraud_percentage = CL.predict(public_key)
+                if is_fraud:
+                    fraud_level = 2
+                print(fraud_level, is_fraud, fraud_percentage)
+            return render_template("results.html", fraud_level = fraud_level, fraud_percentage = fraud_percentage )
         else:
             error_one = "That bitcoin public key was not found"
 
