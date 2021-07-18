@@ -22,20 +22,20 @@ class AddressClassifier:
         
         with open("dataset_stats1.json", "r") as o:
             dataset_stats = json.load(o)
-            print
-            self.mean = pd.Series(dataset_stats["mean"], index=self.ALL_FEATURES, dtype=np.float64)
-            self.std_dev = pd.Series(dataset_stats["std"], index=self.ALL_FEATURES, dtype=np.float64)
+        
+        self.mean = pd.Series(dataset_stats["mean"], index=self.ALL_FEATURES, dtype=np.float64)
+        self.std_dev = pd.Series(dataset_stats["std"], index=self.ALL_FEATURES, dtype=np.float64)
         
     def predict(self, address):
-            all_data = self.get_data_api(address)
-            flat_dict = self.flatten_entire_dict(all_data)
-            flat_arr = self.dict_to_array(flat_dict)
-            process_arr = self.preprocess(flat_arr)
+        all_data = self.get_data_api(address)
+        flat_dict = self.flatten_entire_dict(all_data)
+        flat_arr = self.dict_to_array(flat_dict)
+        process_arr = self.preprocess(flat_arr)
 
-            # get the average prediction from all of this key's transaction
-            avg_pred = self.model.predict(process_arr).mean()
+        # get the average prediction from all of this key's transaction
+        avg_pred = self.model.predict(process_arr).mean()
 
-            return (avg_pred > self.THRESHOLD, avg_pred)
+        return (avg_pred > self.THRESHOLD, avg_pred)
                  
 
     def get_data_api(self, address):
