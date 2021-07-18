@@ -1,8 +1,9 @@
-
-
 .animation-ctn{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     text-align:center;
-    margin-top:15em;
   }
   
       @-webkit-keyframes checkmark {
@@ -104,11 +105,3 @@
       animation: colored-circle 0.6s ease-in-out 0.7s backwards;
   }
 
-
-  @media only screen and (max-device-width: 600px)
-  {
-    .animation-ctn {
-        text-align:center;
-        margin-top: 40em;
-    }
-  }
