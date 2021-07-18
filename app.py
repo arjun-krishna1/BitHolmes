@@ -24,7 +24,8 @@ def index(address = None):
     if address: #if address passed into the url
         if verify_bitcoin(address):
             fraud_level = check_addr(address)
-            return render_template("results.html", fraud_level = fraud_level)
+            return redirect("result");
+            #return render_template("results.html", fraud_level = fraud_level)
         else:
             error_one = "That bitcoin public key was not found"
     elif pressed('public-key-submit-qr') and request.form['public-key-input-qr']:
