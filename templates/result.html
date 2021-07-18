@@ -14,38 +14,46 @@
 
 
 <script>
-
  var canvas = document.getElementById('myCanvas');
  var context = canvas.getContext('2d');
-
+ var x = canvas.width / 2;
+ var y = canvas.height / 2;
+ var radius = 100;
+ var endPercent = 110;
+ var curPerc = 0;
 
  context.lineWidth = 10;
- context.strokeStyle = '#ad2323';
+ context.strokeStyle = 'green';
  context.shadowOffsetX = 0;
  context.shadowOffsetY = 0;
  context.shadowBlur = 10;
  context.shadowColor = '#656565';
 
- let steps = 100;
- let increment_value = (2 * Math.PI) / steps
- let radius = 0;
-
- function animate(i) {
-    if (i >= steps) return;
-    i++;
-    console.log(i)
-    context.beginPath()
-    context.arc(100, 100, 50, radius, radius + increment_value, false);
-    radius += increment_value;
-    context.stroke();
-    setTimeout(() => {
-        animate(i)
-    }, 10);
-
-
+function animate(current) {
+     context.clearRect(0, 0, canvas.width, canvas.height);
+     context.beginPath();
+     context.arc(x, y, radius, 0, ((Math.PI * 2) * current), false);
+     context.stroke();
+     curPerc++;
+     if (curPerc < endPercent) {
+         requestAnimationFrame(function () {
+             animate(curPerc / 100)
+         });
+     }
+     else
+     {
+        animatecheck();
+     }
  }
+function animatecheck() {
+    context.arc(x, y, radius, 0, ((Math.PI * 2) * current), false);
+}
 
+ animate(0, animatecheck)
+ 
+ context.beginPath();
+ context.moveTo(0, 0);
+ context.lineTo(200, 200);
+ context.stroke();
 
-
- animate();
 </script>
